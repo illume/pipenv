@@ -3,4 +3,5 @@ tests:
 init:
 	pip install pipenv
 	pipenv install --dev
-	python -m pipenv check
+	# Do not run if we are on python2.6. Where -m doesn't work well.
+	if [[ $(python -c "import sys;print(sys.version)") != "2.6"* ]]; then python -m pipenv check; fi
